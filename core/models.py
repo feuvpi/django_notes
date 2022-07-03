@@ -14,4 +14,7 @@ class Note(models.Model):
     def __str_(self):
         return self.note
 
+    def get_data_note(self):
+        return self.note_date.strftime('%d/%m/%Y %H:%M')
+
 
