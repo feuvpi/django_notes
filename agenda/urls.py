@@ -18,9 +18,13 @@ from django.urls import path
 from django.contrib import admin
 from django.urls import path
 from core import views
+from django.views.generic import RedirectView
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('notes/', views.notes_list)
+    path('notes/', views.notes_list),
+    path('', RedirectView.as_view(url='/notes'))
+    ##path('', views.index) ## another way to redirect
 ]

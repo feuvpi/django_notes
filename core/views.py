@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from core.models import Note
 
 # Create your views here.
+
+def index(request):
+    return redirect('/notes')
 
 def notes_list(request):
     user = request.user
