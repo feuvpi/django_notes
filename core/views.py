@@ -5,6 +5,6 @@ from core.models import Note
 
 def notes_list(request):
     user = request.user
-    info = Note.objects.filter(user=user)
+    info = Note.objects.all()
     notes = {'notes': info}
     return render(request, 'notes.html', notes)

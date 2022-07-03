@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Notes</title>
-</head>
-<body>
-{% for note in notes %}
-    <p>{{note.note}} - {{note.get_data_note}}</p>
-{% endfor %}
-</body>
-</html>
+{% extends "model-page.html" %}
+{% block content %}
+    <div>
+        {% for note in notes %}
+        <p style="font-size: 1.5rem">{{note.note}} - {{note.get_data_note}}</p>
+    {% endfor %}
+    </div>
+{% endblock %}
