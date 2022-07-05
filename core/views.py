@@ -7,7 +7,10 @@ from django.contrib.auth.decorators import login_required
 #def index(request):
    # return redirect('/notes')
 
-@login_required()
+def login_user(request):
+    return render(request, 'login.html')
+
+@login_required(login_url='/login/')
 def notes_list(request):
     user = request.user
     info = Note.objects.all()

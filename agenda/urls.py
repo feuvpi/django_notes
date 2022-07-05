@@ -25,6 +25,7 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('notes/', views.notes_list),
-    path('', RedirectView.as_view(url='/notes'))
+    path('', RedirectView.as_view(url='/notes')),
+    path('login/', views.login_user)
     ##path('', views.index) ## another way to redirect
 ]
