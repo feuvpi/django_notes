@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('notes/', views.notes_list),
     path('', RedirectView.as_view(url='/notes')),
-    path('login/', views.login_user)
+    path('login/', views.login_user),
+    path('login/submit', views.submit_login)
     ##path('', views.index) ## another way to redirect
 ]
