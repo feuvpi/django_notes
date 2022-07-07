@@ -27,6 +27,6 @@ def submit_login(request):
 @login_required(login_url='/login/')
 def notes_list(request):
     user = request.user
-    info = Note.objects.all()
+    info = Note.objects.filter(user=user)
     notes = {'notes': info}
     return render(request, 'notes.html', notes)
