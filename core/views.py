@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from core.models import Note
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib import messages
 # Create your views here.
 
 #def index(request):
@@ -24,9 +24,8 @@ def submit_login(request):
             login(request, user)
             return redirect('/')
         else:
-            redirect('/')
-    else:
-        redirect('/')
+            messages.error(request, "Invalid user or password.")
+        return redirect('/')
 
 @login_required(login_url='/login/')
 def notes_list(request):
