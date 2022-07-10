@@ -1,6 +1,8 @@
 {% extends "model-page.html" %}
 {% block content %}
-    <div>
+    <a href="note/">
+        <button type="button">New note</button>
+    </a>
         {% for note in notes %}
         <p style="font-size: 1.5rem">{{note.note}} - {{note.get_data_note}}</p>
     {% endfor %}

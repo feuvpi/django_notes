@@ -28,6 +28,10 @@ def submit_login(request):
         return redirect('/')
 
 @login_required(login_url='/login/')
+def note (request):
+    return render(request, 'note.html')
+
+@login_required(login_url='/login/')
 def notes_list(request):
     user = request.user
     info = Note.objects.filter(user=user)
