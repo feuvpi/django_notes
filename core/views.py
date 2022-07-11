@@ -32,6 +32,14 @@ def note (request):
     return render(request, 'note.html')
 
 @login_required(login_url='/login/')
+def add_note(request):
+    if request.POST:
+        note = request.POST.get('note')
+        user = request.user
+        Note.objects.create(note=note, user=user)
+    return redirect('/')
+
+@login_required(login_url='/login/')
 def notes_list(request):
     user = request.user
     info = Note.objects.filter(user=user)

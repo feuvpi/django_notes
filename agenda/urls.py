@@ -29,6 +29,7 @@ urlpatterns = [
     path('login/', views.login_user),
     path('login/submit', views.submit_login),
     path('logout/', views.login_user),
-    path('notes/note/', views.note)
+    path('notes/note/', views.note),
+    path('notes/note/submit', views.add_note)
     ##path('', views.index) ## another way to redirect
 ]
