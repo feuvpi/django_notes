@@ -40,6 +40,12 @@ def add_note(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
+def delete_note(request, id_evento):
+    Note.objects.filter(id=id_evento).delete()
+    return redirect('/')
+
+
+@login_required(login_url='/login/')
 def notes_list(request):
     user = request.user
     info = Note.objects.filter(user=user)
