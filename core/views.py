@@ -1,3 +1,4 @@
+from django.core.mail.backends import console
 from django.shortcuts import render, redirect
 from core.models import Note
 from django.contrib.auth.decorators import login_required
@@ -41,6 +42,15 @@ def add_note(request):
 
 @login_required(login_url='/login/')
 def delete_note(request, id_evento):
+    user = request.user
+    note = Note.object.get(id=id_evento)
+    if user == note.user:
+        note.delete()
+        return redirect('/')
+    else:
+        console.log('Access denied.')
+
+
     Note.objects.filter(id=id_evento).delete()
     return redirect('/')
 
