@@ -29,8 +29,12 @@ def submit_login(request):
         return redirect('/')
 
 @login_required(login_url='/login/')
-def note (request):
-    return render(request, 'note.html')
+def note(request):
+    id_note = request.GET.get('id')
+    dados = {}
+    if id_note:
+        dados['note'] = Note.objects.get(id=id_note)
+    return render(request, 'note.html', dados)
 
 @login_required(login_url='/login/')
 def add_note(request):
@@ -41,9 +45,9 @@ def add_note(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
-def delete_note(request, id_evento):
+def delete_note(request, id_note):
     user = request.user
-    note = Note.object.get(id=id_evento)
+    note = Note.object.get(id=id_note)
     if user == note.user:
         note.delete()
         return redirect('/')
@@ -51,7 +55,7 @@ def delete_note(request, id_evento):
         console.log('Access denied.')
 
 
-    Note.objects.filter(id=id_evento).delete()
+    Note.objects.filter(id=id_note).delete()
     return redirect('/')
 
 
