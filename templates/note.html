@@ -7,6 +7,7 @@
 <form action="submit" method="POST"> {% csrf_token %} <!-- generate security token -->
     <label>Note</label>
     <br>
+    <input type="number" name="id" value="{{ note.id }}">
     <textarea name="note" rows="32" cols="64">{{ note.note }}</textarea>
     <br>
     <div align="left">
@@ -15,9 +16,6 @@
         </a>
         <a href="save">
             <button type="submit">Save</button>
-        </a>
-        <a>
-            <button></button>
         </a>
     </div>
 

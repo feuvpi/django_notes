@@ -41,8 +41,17 @@ def add_note(request):
     if request.POST:
         note = request.POST.get('note')
         user = request.user
-        Note.objects.create(note=note, user=user)
-    return redirect('/')
+        id_note = request.POST.get('id')
+        if id_note:
+            print("just got id note")
+            Note.objects.filter(id=id_note).update(note=note)
+            return redirect('/')
+
+        else:
+            print("didnt got note.id")
+            Note.objects.create(note=note, user=user)
+            return redirect('/')
+
 
 @login_required(login_url='/login/')
 def delete_note(request, id_note):
