@@ -39,17 +39,20 @@ def note(request):
 @login_required(login_url='/login/')
 def add_note(request):
     if request.POST:
-        note = request.POST.get('note')
+        new_note = request.POST.get('note')
         user = request.user
         id_note = request.POST.get('id')
-        if id_note:
-            print("just got id note")
-            Note.objects.filter(id=id_note).update(note=note)
-            return redirect('/')
+        if id_note: ## more security, cant grab url
+            note = Note.objects.get(id=id_note)
+            if note.user == user:
+                note.note = new_note
+                note.save()
+                return redirect('/')
+            #Note.objects.filter(id=id_note).update(note=note)
+            #return redirect('/')
 
         else:
-            print("didnt got note.id")
-            Note.objects.create(note=note, user=user)
+            Note.objects.create(note=new_note, user=user)
             return redirect('/')
 
 
