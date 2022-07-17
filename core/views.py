@@ -4,6 +4,7 @@ from core.models import Note
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.http.response import Http404
 # Create your views here.
 
 #def index(request):
@@ -59,11 +60,15 @@ def add_note(request):
 @login_required(login_url='/login/')
 def delete_note(request, id_note):
     user = request.user
-    note = Note.object.get(id=id_note)
+    try:
+        note = Note.object.get(id=id_note)
+    except Exception:
+        raise Http404()
     if user == note.user:
         note.delete()
         return redirect('/')
     else:
+        raise Http404()
         console.log('Access denied.')
 
 
